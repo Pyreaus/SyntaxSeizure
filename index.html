@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="index.html">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SyntaxSeizure</title>
+    <script src="x.js"></script>
+    <script>
+        function newURL(url) {
+            window.location = url;
+        }
+    </script>
+</head>
+<body>
+    <p>para 1</p>
+    <!-- space for deferred loading -->
+    <script>
+        if (window.innerWidth > 500) {
+            var newSite = prompt("screen to big, enter a new URL");
+            newURL(newSite); //passing user input to newURL function
+        } else {
+            alert("your screen is small enough bud");
+        }
+        for(let x of [[1,2,3,['.4']],[['.4'],3,2,1],['z']]) {
+            for(let p of x) {
+                console.log(`${p}->\${y}`);
+            }
+        }
+        for (let [x,y,z] of [list1,list2,list3]) {
+                    console.log(`${x[0]}->${y[0]}->${z[0]}`); 
+        }
+        var [x,y,z] = [void(0),null]
+        for (let [x,y,...z] of [[1,2,['.3']],[[],0,{}],[['.3'],2,1]]) {
+            for (let $x=0;$x<4;$x++) {
+                console.log(`${x[0]}->${y[0]}->\${z[0]}`);
+                [x,y,z] = [1,...[2],...[3]];
+
+                console.log(x[Symbol.iterator]().next().value());
+            }}
+        var [arg1,arg2] = [[2,3,4],[5]];
+        (function(a,b,c,d,e,f,...g){
+            function* gen(){
+                yield 1;
+                yield 2 + arguments[0];
+            }
+        })(...[0],1,...[arg1],...[arg2]);
+    </script>
+    <script>  
+        (function sum(a,b,...$x) {  //must pass at least 2 args,  syntax for rest params
+            let newArr = [a,b,...$x];  //combinging args into single array + spread
+            return newArr.reduce((A,B)=>{  
+                return A + B; 
+            });
+        })(1,2,3,4,5,7); 
+
+        let [arr2,arr1] = [[2,3],[0,1]];
+
+        (function compiler($a,$b,$c,$d,...x) {      
+            let merge = [$a,$b,$c,$d,...x];
+            return merge.reduce((prev,curr)=>{
+                return prev + curr;
+            });                       
+        })(...arr1,...arr2,...[4],5);
+
+        for (let [x,y,z,...$] of [[3,2,1,2,3,4],[...['a'],'b','c',0],[9,9,9,9,9],[3,2,1]]) {
+            console.log(`1st:${x} 2nd:${y} 3rd:${z} xth:${$}`);      
+        }                                                       /* 1st:3 2nd:2 3rd:1 xth:2,3,4 */ 
+                                                                /* 1st:a 2nd:b 3rd:c xth:0   
+                                                                   1st:9 2nd:9 3rd:9 xth:9,9   
+                                                                   1st:3 2nd:2 3rd:1 xth:      */  
+    </script>    
+</body>
+</HTML>
